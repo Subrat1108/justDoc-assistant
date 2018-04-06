@@ -16,16 +16,17 @@ router.route('/questionaire')
         }
         return res.send(submits._id);
     });
-})
+});
 
-// .get(function(req, res){
-//     Answers.find(function(err, thoughts){
-//         if(err){
-//             return res.send(500, err);
-//         }
-//         return res.send(thoughts);
-//     });
-// });
+router.get('/questionaire/:ansId', function(req,res,next){
+    Answers.find({_id : req.params.ansId},function(err,data){
+        if(err) next(err);
+        else{
+            console.log(data);
+            res.send(data);
+        }
+    });
+});
 
 
 

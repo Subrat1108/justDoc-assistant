@@ -1,8 +1,58 @@
+html{
+  height: 100%;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: linear-gradient(to bottom right, white, skyblue,white);
+  margin: 0;
+  min-height: 100%;
 }
 
 a {
   color: #00B7FF;
+}
+
+.mainBody{
+  text-align : center;
+  margin:20px;
+
+}
+
+#landingSection{
+  margin-top: 100px;
+}
+.modal{
+  overflow: auto;
+}
+.modal-dialog {
+  width: 98%;
+  height: 92%;
+  padding: 5px;
+  overflow:auto;
+}
+
+.modal-content {
+  height: 99%;
+  overflow:auto;
+ 
+}
+.well {
+  min-height: 250px;
+}
+.modal-header{
+  position: fixed;
+  z-index: 999999;
+  width: 100%;
+  background: linear-gradient(to bottom right, white, skyblue,white);
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-left: 0;
+  margin-right: 0;
+
+}
+
+.modal-body{
+  margin-top: 5%;
+  overflow:auto;
 }

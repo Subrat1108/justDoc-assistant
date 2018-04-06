@@ -6,31 +6,116 @@
   
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
       
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+ 
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+    
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
       <script src ="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
 
       <script src="/javascripts/justDoc.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <title>JustDoc</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body ng-controller="mainController">
-    <h1></h1>
-    <p>Welcome to JustDoc Assistant</p>
+<body ng-controller="mainController">
+<div class="container mainBody"> 
+  <div id="landingSection" class="container">
+      <div><h1>Welcome to JustDoc Assistant</h1></div>
 
-    <form ng-submit="submit()">
-      <input type="text" aria-label="Name" placeholder="name" ng-model="answers.name"><br>
-      <input type="number" aria-label="Age" placeholder="age" ng-model="answers.age"><br>
-      <h3>Symptoms</h3>
-      <p>Fever</p><input type ="checkbox" aria-label="fever" ng-model="answers.symptoms.fever"><br>
-      <p>Head Ache</p><input type="checkbox" aria-label="headache" ng-model="answers.symptoms.headache"><br>
-      <input type="submit">
-    </form>
+      <div style="margin-top : 30px">
+          <button class="btn btn-primary" ng-click="check()" data-toggle="modal" data-target="#quesModal">
+            Consult our Assistant
+          </button>
+      </div>
+  </div>  
+</div>
 
+ <!-- Modal -->
+ <div class="modal fade" id="quesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+  <div class="modal-body">
     
+          <!------- Questionaire------------------>
 
+      <div class="well well-lg" id="myStaticDialog"  ng-if="test1">
+            <p>
+              Hello User,
+              I am the world renowned assistant of Mr. Holmes. I'll me asking a couple of questions to you.
+              Just try to be as precise as possibe. Shall we start?
+            </p>
+            <button class="btn btn-primary" ng-click="getName()">Lets do it !</button>
+            <button class="btn btn-primary">May be another time</button>
+        </div>
 
-  </body>
+    <div ng-if="test2">
+      <div class="well well-lg" id="getName">
+                  <p>
+                    Can I get your name please!
+                  </p>
+                  <input type="text" required placeholder="Name" ng-model="answers.name" id="name">
+                  <button ng-click="getAge()">Lets do it !</button>
+                  <button>May be another time</button>
+      </div>
+    </div>
+
+    <div ng-if="test3">
+      <div class="well well-lg" id="getAge">
+                  <p>
+                    Can I get your Age please!
+                  </p>
+                  <input type="number" required placeholder="Age" ng-model="answers.age">
+                  <button ng-click="getSymptoms()">Lets do it !</button>
+                  <button>May be another time</button>
+      </div>
+    </div>
+
+    <div ng-if="test4" >
+      <div class="well well-lg" id="getSymptoms">
+                  <p>
+                    Please mention the symptoms
+                  </p>
+                  <label for="fever">Fever</label>
+                  <input type="checkbox"  ng-model="answers.symptoms.fever" id="fever"><br>
+                  <label for="headache">Head-ache</label>
+                  <input type="checkbox"  ng-model="answers.symptoms.headache" id="headache">
+                  <button ng-click="submit()">Finish</button>
+                  <button>May be another time</button>
+      </div>
+    </div>
+
+    <div ng-if="test5" >
+        <div class="well well-lg" id="thanks">
+                    <p>
+                      Thank You for your time. Answers have been recorded and sent to Mr. Holmes.
+                      He's probably viewing it as we speak and would be getting in touch with you anytime now.
+                    </p>
+                    <p>Meanwhile why don't you go back to the website to view our latest offers on XYX and XYZ</p>
+                    <button ng-click="out()">Your Respose</button>
+                    <button>May be another time</button>
+        </div>
+      </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>   
 </html>
