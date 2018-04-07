@@ -69,6 +69,22 @@ $scope.out = function(){
      $http.get('/api/questionaire/'+$scope.id).then(function(response){
         $scope.userAnswers = response.data;
         console.log($scope.userAnswers[0].name);
+
+        var dummyObject ={};
+
+        for(var k in $scope.userAnswers[0].symptoms){
+
+            if($scope.userAnswers[0].symptoms[k]==true)
+
+            dummyObject[k]=$scope.userAnswers[0].symptoms[k];
+
+        } ;
+
+
+       $scope.ailments = Object.keys(dummyObject);
+
+
+        $('#quesModal').modal('hide');
       });
 
 };

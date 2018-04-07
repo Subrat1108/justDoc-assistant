@@ -38,6 +38,32 @@
   </div>  
 </div>
 
+<div id="response">
+  <h4>Your Response</h4>
+  <p>Hi User, </p>
+  <p>Here are your responses that you had provided to the assistant.
+    A copy of it has already been sent to one of hour doctors who would be reviewing it and will give
+    you a call soon!
+  </p>
+  <br><br>
+  <div id="slip" class="container">
+    <div class="row">
+      <div class="col-sm-6"><b>Name of the patient :</b></div>
+      <div class="col-sm-6" style="text-align : left">{{userAnswers[0].name}}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6"><b>Age:</b></div>
+        <div class="col-sm-6" style="text-align : left">{{userAnswers[0].age}}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6"><b>Ailments</b></div>
+        <div class="col-sm-6"><div ng-repeat="x in ailments">{{x}}</div></div>
+    </div>
+
+  </div>
+
+</div>
+
  <!-- Modal -->
  <div class="modal fade" id="quesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
