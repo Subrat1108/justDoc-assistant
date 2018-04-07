@@ -17,6 +17,7 @@
       <script src ="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
       
       <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/11.2.0/ng-file-upload.min.js"></script>
 
       <script src="/javascripts/justDoc.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -58,6 +59,12 @@
     <div class="row">
         <div class="col-sm-6"><b>Ailments</b></div>
         <div class="col-sm-6"><div ng-repeat="x in ailments">{{x}}</div></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6"><b>Attachments</b></div>
+        <div class="col-sm-6"><div ng-repeat="y in fileObject">{{y}}<span >
+          <img class="attachment" src="\uploads\{{y}}"></span></div></div>
+        
     </div>
 
   </div>
@@ -121,12 +128,31 @@
                   <input type="checkbox"  ng-model="answers.symptoms.fever" id="fever"><br>
                   <label for="headache">Head-ache</label>
                   <input type="checkbox"  ng-model="answers.symptoms.headache" id="headache">
-                  <button ng-click="submit()">Finish</button>
+                  <button ng-click="getFiles()">next</button>
                   <button>May be another time</button>
       </div>
     </div>
+    <div ng-if="test5" class="well well-lg" id="getFiles">
+                  <button ngf-select="uploadFiles($files)" multiple>Select Files</button>
+          <br>
+          <br>Files:
+          <ul>
+              <li ng-repeat="f in files" style="font:smaller">
+                  {{f.name}}
+              </li>
+          </ul>
 
-    <div ng-if="test5" >
+          <span class="progress" ng-show="progress >= 0">
+              <div id="progress" ng-bind="progress + '%'"></div>
+          </span>
+
+
+          {{errorMsg}}
+
+          <button ng-click="toResponse()">Your Respose</button>
+    </div>
+
+    <div ng-if="test6" >
         <div class="well well-lg" id="thanks">
                     <p>
                       Thank You for your time. Answers have been recorded and sent to Mr. Holmes.

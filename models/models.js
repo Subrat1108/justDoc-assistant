@@ -15,4 +15,10 @@ var answerSchema = new mongoose.Schema({
 
 });
 
+var fileSchema = new mongoose.Schema({
+    file : Object,
+    created_by : String
+});
+
 mongoose.model('answers',answerSchema);
+mongoose.model('files',fileSchema);

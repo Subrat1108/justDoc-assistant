@@ -1,0 +1,5 @@
+-<a href="@{sitemap_url('account')}" > --------in login anchar tag
+-along with template css and js file i added in css nd js folder which is in public folder.
+-And ui is not getting properlly so i compare from redimade template to our page and in layout page i added 'default.css' and 'default.js'
+-And according to redimade template i'm implementing login and registeration popup.
+-

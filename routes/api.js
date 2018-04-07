@@ -1,7 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require( 'mongoose' );
+var path = require('path');
+var multer = require('multer');
 var Answers = mongoose.model('answers');
+var Files =  mongoose.model('files');
+
+var storage = multer.diskStorage({
+    // destination
+    destination: function (req, file, cb) {
+      cb(null, './public/uploads');
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now()+ path.extname(file.originalname));
+    }
+  });
+
+var uploads =  multer({storage:storage});
 
 router.route('/questionaire')
 
@@ -28,6 +43,29 @@ router.get('/questionaire/:ansId', function(req,res,next){
     });
 });
 
+router.post('/upload', uploads.any(), function (req, res, next) {
+    
+    var newUpload = {
+        created_by : req.body.current_user,
+        file: req.files
+      };
+      Files.create(newUpload, function (err, next) {
+        if (err) {
+          next(err);
+        } else {
+          res.send(newUpload);
+        }
+      });
+  
+  });
 
-
+  router.get('/upload/:userId', function(req,res,next){
+    Files.find({ created_by : req.params.userId},function(err,data){
+        if(err) next(err);
+        else{
+            console.log(data[0].file);
+            res.send(data);
+        }
+    });
+});
 module.exports = router;
