@@ -39,8 +39,9 @@
   </div>  
 </div>
 
-<div id="response">
-  <h4>Your Response</h4>
+<div id="response" ng-if="test7"> <!--ng-if="test7"-->
+  <div class="container responseSlip">
+  <div id="responseHead"><h4><b>Your Response</b></h4></div>
   <p>Hi User, </p>
   <p>Here are your responses that you had provided to the assistant.
     A copy of it has already been sent to one of hour doctors who would be reviewing it and will give
@@ -61,22 +62,20 @@
         <div class="col-sm-6"><div ng-repeat="x in ailments">{{x}}</div></div>
     </div>
     <div class="row">
-        <div class="col-sm-6"><b>Attachments</b></div>
-        <div class="col-sm-6"><div ng-repeat="y in fileObject">{{y}}<span >
-          <img class="attachment" src="\uploads\{{y}}"></span></div></div>
-        
+        <div class="col-sm-6"><b>Attachments (Currently supporting only images)</b></div>
+        <div class="col-sm-6"><div ng-repeat="y in fileObject">{{y}} <br><span >
+          <img class="attachment" src="\uploads\{{y}}"></span><br></div></div>
     </div>
-
   </div>
-
+</div>
 </div>
 
  <!-- Modal -->
- <div class="modal fade" id="quesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+ <div class="modal fade" id="quesModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <!-- <div class="modal-content"> -->
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h3 style="color:white">JustDoc Assistant</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -88,84 +87,121 @@
           <!------- Questionaire------------------>
 
       <div class="well well-lg" id="myStaticDialog"  ng-if="test1">
-            <p>
-              Hello User,
-              I am the world renowned assistant of Mr. Holmes. I'll me asking a couple of questions to you.
-              Just try to be as precise as possibe. Shall we start?
-            </p>
+        <div> 
+          <p>
+            Hello User,
+            I am the world renowned assistant of Mr. Holmes. I'll me asking a couple of questions to you.
+            Just try to be as precise as possibe. Shall we start?
+          </p>
+        </div>
+        <div class="buttonSection">
             <button class="btn btn-primary" ng-click="getName()">Lets do it !</button>
-            <button class="btn btn-primary">May be another time</button>
+            <button class="btn btn-primary" data-dismiss="modal">May be another time</button>
+         </div>
         </div>
 
-    <div ng-if="test2">
-      <div class="well well-lg" id="getName">
-                  <p>
-                    Can I get your name please!
-                  </p>
-                  <input type="text" required placeholder="Name" ng-model="answers.name" id="name">
-                  <button ng-click="getAge()">Lets do it !</button>
-                  <button>May be another time</button>
+    <div class="well well-lg" id="getName" ng-if="test2">
+      <div>
+            <p>
+              Let us start by introducing ourselves, shall we! I am the assistant to Mr. Holmes of JustDoc.
+              What about you?
+            </p>
+      </div>
+      <div>
+          <input class="form-control" type="text" required autofocus placeholder="Name" ng-model="answers.name" id="name">
+      </div>
+      <div class="buttonSection">
+          <button class="btn btn-primary" ng-click="getAge()" id="nameButton">Next</button>
+          <button class="btn btn-primary" data-dismiss="modal">Lets do this some other time</button>
       </div>
     </div>
 
-    <div ng-if="test3">
-      <div class="well well-lg" id="getAge">
-                  <p>
-                    Can I get your Age please!
-                  </p>
-                  <input type="number" required placeholder="Age" ng-model="answers.age">
-                  <button ng-click="getSymptoms()">Lets do it !</button>
-                  <button>May be another time</button>
+    <div class="well well-lg" id="getAge" ng-if="test3">
+      <div>
+          <p>
+              Hey, It's been just 4 days for me. How about you?
+              Not being rude, but I need to know your age.
+              Doctors Stuff !
+          </p>
+          <div>
+              <input class="form-control" type="number"  required autofocus placeholder="Age" ng-model="answers.age">
+          </div>  
+      </div> 
+      <div class="buttonSection">
+          <button class="btn btn-primary" ng-click="getSymptoms()" id="ageButton">Next</button>
+          <button class="btn btn-primary" data-dismiss="modal">I'll start off from the begining later</button>
       </div>
     </div>
 
-    <div ng-if="test4" >
-      <div class="well well-lg" id="getSymptoms">
-                  <p>
-                    Please mention the symptoms
-                  </p>
-                  <label for="fever">Fever</label>
-                  <input type="checkbox"  ng-model="answers.symptoms.fever" id="fever"><br>
-                  <label for="headache">Head-ache</label>
-                  <input type="checkbox"  ng-model="answers.symptoms.headache" id="headache">
-                  <button ng-click="getFiles()">next</button>
-                  <button>May be another time</button>
+    <div class="well well-lg" id="getSymptoms" ng-if="test4" >
+      <div >
+          <p>
+              How are you feeling? Could you please mention the symptoms best to your knowledge?
+          </p>
+      <div id="ailmentCheck">
+        <div class="checkbox">
+            <label for="fever"><input type="checkbox"  ng-model="answers.symptoms.fever" id="fever">Fever</label>
+        </div>
+        <div class="checkbox">
+            <label for="headache"><input type="checkbox"  ng-model="answers.symptoms.headache" id="headache">Head-ache</label>
+        </div>
+        <div class="checkbox">
+            <label for="Nausea"><input type="checkbox"  ng-model="answers.symptoms.nausea" id="headache">Nausea</label>
+        </div>
+        <div class="checkbox">
+            <label for="Weakness"><input type="checkbox"  ng-model="answers.symptoms.weakness" id="headache">Weakness</label>
+        </div>
+        <div class="checkbox">
+            <label for="Rashes"><input type="checkbox"  ng-model="answers.symptoms.rashes" id="headache">Rashes</label>
+        </div>    
+      </div>
+      </div>
+      <div class="buttonSection">
+          <button class="btn btn-primary" ng-click="getFiles()" id="symptomsButton">next</button>
+          <button class="btn btn-primary" data-dismiss="modal">I'm not feeling well to complete the last 2 steps</button>
       </div>
     </div>
+
     <div ng-if="test5" class="well well-lg" id="getFiles">
-                  <button ngf-select="uploadFiles($files)" multiple>Select Files</button>
-          <br>
-          <br>Files:
-          <ul>
-              <li ng-repeat="f in files" style="font:smaller">
-                  {{f.name}}
-              </li>
-          </ul>
-
-          <span class="progress" ng-show="progress >= 0">
-              <div id="progress" ng-bind="progress + '%'"></div>
-          </span>
-
-
-          {{errorMsg}}
-
-          <button ng-click="toResponse()">Your Respose</button>
+      <div>
+        <p>
+          If you have any documents or images to show the doc. PLease do upload it. And we'll have a look at it.
+        </p>
+      </div>
+      <div class="buttonSection">
+          <button class="btn btn-primary" ngf-select="uploadFiles($files)" multiple>Select Files</button>
+      </div>
+      <div id="fileupload">
+        <div>
+            <h4>Files:</h4>
+            <ul>
+                <li ng-repeat="f in files" style="font:smaller">
+                    {{f.name}}
+                </li>
+            </ul>
+        </div>
+      </div>
+      <div class="buttonSection">
+          <button class="btn btn-primary" ng-click="toResponse()" id="filesButton">Next</button>
+      </div>
     </div>
 
-    <div ng-if="test6" >
-        <div class="well well-lg" id="thanks">
-                    <p>
-                      Thank You for your time. Answers have been recorded and sent to Mr. Holmes.
-                      He's probably viewing it as we speak and would be getting in touch with you anytime now.
-                    </p>
-                    <p>Meanwhile why don't you go back to the website to view our latest offers on XYX and XYZ</p>
-                    <button ng-click="out()">Your Respose</button>
-                    <button>May be another time</button>
+    <div class="well well-lg" id="thanks" ng-if="test6" >
+        <div>
+            <p>
+                Thank You for your time. Answers have been recorded and sent to Mr. Holmes.
+                He's probably viewing it as we speak and would be getting in touch with you anytime now.
+            </p>
+            <p>Meanwhile why don't you go back to the website to view our latest offers on XYX and XYZ
+            </p>
         </div>
+        <div class="buttonSection">
+            <button class="btn btn-primary" ng-click="out()" id="outButton">Finish</button>
+        </div>         
       </div>
 
-        </div>
-      </div>
+  </div>
+      <!-- </div> -->
     </div>
   </div>
 

@@ -7,7 +7,7 @@ var answerSchema = new mongoose.Schema({
     age : Number,
     symptoms : {
         headache : Boolean,
-        vomiting : Boolean,
+        nausea : Boolean,
         fever : Boolean,
         weakness : Boolean,
         rashes : Boolean

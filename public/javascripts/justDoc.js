@@ -5,7 +5,14 @@ var app = angular.module('justDoc', ['ngRoute','ngCookies','ngMaterial','ngFileU
 app.controller("mainController", function($timeout,$http,$scope,$cookieStore, $mdDialog, $location, $anchorScroll,Upload){
 
 
-    $scope.answers = {name : '', age : '', symptoms : {fever : false, headache : false}};
+    $scope.answers = {name : '',
+                      age : '', 
+                      symptoms : {fever : false, 
+                                  headache : false, 
+                                  nausea : false, 
+                                  weakness : false, 
+                                  rashes : false}
+                     };
 
     $scope.uploadFiles = function (files) {
         $scope.files = files;
@@ -38,25 +45,26 @@ app.controller("mainController", function($timeout,$http,$scope,$cookieStore, $m
 
     $scope.getName = function(){
         $scope.test2=true;
-        $location.hash('getName');
+    $location.hash('nameButton');
     $anchorScroll();
     };
 
     $scope.getAge = function(){
         $scope.test3=true;
-        $location.hash('getAge');
+        $location.hash('ageButton');
     $anchorScroll();
+        
     };
 
     $scope.getSymptoms = function(){
         $scope.test4 = true;
-        $location.hash('getSymptoms');
+        $location.hash('symptomsButton');
        $anchorScroll();
     };
 
     $scope.getFiles = function(){
         $scope.test5 = true;
-        $location.hash('getFiles');
+        $location.hash('filesButton');
        $anchorScroll();
 
        $http.post('/api/questionaire', $scope.answers).then(function(query){
@@ -67,7 +75,7 @@ app.controller("mainController", function($timeout,$http,$scope,$cookieStore, $m
 
     $scope.toResponse = function(){
             $scope.test6=true;
-            $location.hash('thanks');
+            $location.hash('outButton');
             $anchorScroll();
 
 };
@@ -90,22 +98,30 @@ $scope.out = function(){
 
         } ;
 
-        $http.get('/api/upload/'+$scope.id).then(function(response){
+      var func1 =   function(){
+            if($scope.files!=null){
 
-            var l = response.data[0].file.length;
-            console.log(l);
-            $scope.fileObject ={};
-            console.log(response.data[0].file[0].filename);
-            for(var i=0;i<l;i++){
-                $scope.fileObject[i] = response.data[0].file[i].filename;
+                $http.get('/api/upload/'+$scope.id).then(function(response){
+    
+                    var l = response.data[0].file.length;
+                    console.log(l);
+                    $scope.fileObject ={};
+                    console.log(response.data[0].file[0].filename);
+                    for(var i=0;i<l;i++){
+                        $scope.fileObject[i] = response.data[0].file[i].filename;
+                    };
+                    console.log( $scope.fileObject);
+                });
             };
-            console.log( $scope.fileObject);
-        });
+        }
+
+        func1();
+
+        
 
 
        $scope.ailments = Object.keys(dummyObject);
-
-
+       $scope.test7=true;
         $('#quesModal').modal('hide');
       });
 
