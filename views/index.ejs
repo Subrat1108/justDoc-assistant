@@ -53,16 +53,19 @@
       <div class="col-sm-6"><b>Name of the patient :</b></div>
       <div class="col-sm-6" style="text-align : left">{{userAnswers[0].name}}</div>
     </div>
+    <br><br>
     <div class="row">
         <div class="col-sm-6"><b>Age:</b></div>
         <div class="col-sm-6" style="text-align : left">{{userAnswers[0].age}}</div>
     </div>
-    <div class="row">
-        <div class="col-sm-6"><b>Ailments</b></div>
+    <br><br>
+    <div class="row" id="slipMid">
+        <div class="col-sm-6"><b>Ailments :</b></div>
         <div class="col-sm-6"><div ng-repeat="x in ailments">{{x}}</div></div>
     </div>
+    <br><br>
     <div class="row">
-        <div class="col-sm-6"><b>Attachments (Currently supporting only images)</b></div>
+        <div class="col-sm-6"><b>Attachments (Currently supporting only images) :</b></div>
         <div class="col-sm-6"><div ng-repeat="y in fileObject">{{y}} <br><span >
           <img class="attachment" src="\uploads\{{y}}"></span><br></div></div>
     </div>
@@ -86,8 +89,8 @@
     
           <!------- Questionaire------------------>
 
-      <div class="well well-lg" id="myStaticDialog"  ng-if="test1">
-        <div> 
+      <div class=" parent  " id="myStaticDialog"  ng-if="test1">
+        <div class="botText"> 
           <p>
             Hello User,
             I am the world renowned assistant of Mr. Holmes. I'll me asking a couple of questions to you.
@@ -95,13 +98,13 @@
           </p>
         </div>
         <div class="buttonSection">
-            <button class="btn btn-primary" ng-click="getName()">Lets do it !</button>
-            <button class="btn btn-primary" data-dismiss="modal">May be another time</button>
+            <button class="btn btn-custom" ng-click="getName()">Lets do it !</button>
+            <button class="btn btn-custom" data-dismiss="modal">May be another time</button>
          </div>
         </div>
 
-    <div class="well well-lg" id="getName" ng-if="test2">
-      <div>
+    <div class=" parent  " id="getName" ng-if="test2">
+        <div class="botText"> 
             <p>
               Let us start by introducing ourselves, shall we! I am the assistant to Mr. Holmes of JustDoc.
               What about you?
@@ -111,13 +114,13 @@
           <input class="form-control" type="text" required autofocus placeholder="Name" ng-model="answers.name" id="name">
       </div>
       <div class="buttonSection">
-          <button class="btn btn-primary" ng-click="getAge()" id="nameButton">Next</button>
-          <button class="btn btn-primary" data-dismiss="modal">Lets do this some other time</button>
+          <button class="btn btn-custom" ng-click="getAge()" id="nameButton">Next</button>
+          <button class="btn btn-custom" data-dismiss="modal">Lets do this some other time</button>
       </div>
     </div>
 
-    <div class="well well-lg" id="getAge" ng-if="test3">
-      <div>
+    <div class=" parent  " id="getAge" ng-if="test3">
+        <div class="botText"> 
           <p>
               Hey, It's been just 4 days for me. How about you?
               Not being rude, but I need to know your age.
@@ -128,13 +131,13 @@
           </div>  
       </div> 
       <div class="buttonSection">
-          <button class="btn btn-primary" ng-click="getSymptoms()" id="ageButton">Next</button>
-          <button class="btn btn-primary" data-dismiss="modal">I'll start off from the begining later</button>
+          <button class="btn btn-custom" ng-click="getSymptoms()" id="ageButton">Next</button>
+          <button class="btn btn-custom" data-dismiss="modal">I'll start off from the begining later</button>
       </div>
     </div>
 
-    <div class="well well-lg" id="getSymptoms" ng-if="test4" >
-      <div >
+    <div class=" parent  " id="getSymptoms" ng-if="test4" >
+        <div class="botText"> 
           <p>
               How are you feeling? Could you please mention the symptoms best to your knowledge?
           </p>
@@ -157,19 +160,19 @@
       </div>
       </div>
       <div class="buttonSection">
-          <button class="btn btn-primary" ng-click="getFiles()" id="symptomsButton">next</button>
-          <button class="btn btn-primary" data-dismiss="modal">I'm not feeling well to complete the last 2 steps</button>
+          <button class="btn btn-custom" ng-click="getFiles()" id="symptomsButton">next</button>
+          <button class="btn btn-custom" data-dismiss="modal">I'm not feeling  parent to complete the last 2 steps</button>
       </div>
     </div>
 
-    <div ng-if="test5" class="well well-lg" id="getFiles">
-      <div>
+    <div ng-if="test5" class=" parent  " id="getFiles">
+        <div class="botText"> 
         <p>
           If you have any documents or images to show the doc. PLease do upload it. And we'll have a look at it.
         </p>
       </div>
       <div class="buttonSection">
-          <button class="btn btn-primary" ngf-select="uploadFiles($files)" multiple>Select Files</button>
+          <button class="btn btn-custom" ngf-select="uploadFiles($files)" multiple>Select Files</button>
       </div>
       <div id="fileupload">
         <div>
@@ -182,12 +185,12 @@
         </div>
       </div>
       <div class="buttonSection">
-          <button class="btn btn-primary" ng-click="toResponse()" id="filesButton">Next</button>
+          <button class="btn btn-custom" ng-click="toResponse()" id="filesButton">Next</button>
       </div>
     </div>
 
-    <div class="well well-lg" id="thanks" ng-if="test6" >
-        <div>
+    <div class=" parent  " id="thanks" ng-if="test6" >
+        <div class="botText"> 
             <p>
                 Thank You for your time. Answers have been recorded and sent to Mr. Holmes.
                 He's probably viewing it as we speak and would be getting in touch with you anytime now.
@@ -196,7 +199,7 @@
             </p>
         </div>
         <div class="buttonSection">
-            <button class="btn btn-primary" ng-click="out()" id="outButton">Finish</button>
+            <button class="btn btn-custom" ng-click="out()" id="outButton">Finish</button>
         </div>         
       </div>
 

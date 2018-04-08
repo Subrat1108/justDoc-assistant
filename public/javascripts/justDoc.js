@@ -123,7 +123,11 @@ $scope.out = function(){
        $scope.ailments = Object.keys(dummyObject);
        $scope.test7=true;
         $('#quesModal').modal('hide');
-      });
+      }).then(function(){
+        $location.hash('slipMid');
+        $anchorScroll();
+    });
+
 
 };
     
